@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>React basic</title>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+</head>
+<body>
+
+    <!-- STEP 1 -->
+    <div id="app"></div>
+
+    <script type="text/babel">
+
+        // STEP 2
+        class App extends React.Component{
+
+            // STATE
+            state = {
+                name: "Taha Ansari",
+                age: 27
+            }
+
+            // FUNCTION 
+            handleClick = (e) => {
+                // console.log(e.target)
+                console.log("Before " + this.state.name)
+                this.setState({ name:"Taha Mehmood Ansari" })
+                console.log("After "+ this.state.name)
+            }
+
+            // FUNCTIONS
+            handleOver(e){ console.log(e) }
+
+            handleCopy(e){ alert('You are not allowed to copy text from this website') }
+
+            hangleChange = (e) => { this.setState({ name: e.target.value }) }
+
+            handleSubmit = (e) => { e.preventDefault(); alert('submit called '+this.state.name) }
+
+            render(){
+                return(
+                    <div className="app-content"> 
+                        <h1>Hey, { this.state.name }</h1>
+                        <p>My name is { this.state.name } and i am { this.state.age }</p>
+                        <button onClick={this.handleClick}>Click Me</button>
+                        <button onMouseOver={this.handleOver}>Hover Me</button>
+                        <p onCopy={this.handleCopy}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, quis!</p>
+                        <form onSubmit={this.handleSubmit}>
+                            <input type="text" onChange={this.hangleChange}/>  
+                            <button>Submit</button> 
+                        </form>
+                    </div>
+                )
+            } 
+        }
+        
+        // STEP 3
+        ReactDOM.render(<App/>,document.getElementById('app'));
+        
+    </script>
+</body>
+</html>
